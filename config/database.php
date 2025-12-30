@@ -1,13 +1,10 @@
 <?php
-/**
- * Configuration de la base de données
- */
-
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'quiz_platform');
+define('DB_NAME', 'qodexv2');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
+
 
 // Configuration des sessions sécurisées
 ini_set('session.cookie_httponly', 1);
