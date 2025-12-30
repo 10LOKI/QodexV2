@@ -57,7 +57,11 @@ unset($_SESSION['quiz_error']);
                         <a href="categories.php" class="underline font-semibold">Créer une catégorie</a>
                     </div>
                 <?php else: ?>
+<<<<<<< HEAD
+                    <form action="../../actions/quiz_create.php" method="POST">
+=======
                     <form action="../../actions/quiz_create.php" method="POST" id="quizForm">
+>>>>>>> upstream/main
                         <input type="hidden" name="csrf_token" value="<?= Security::generateCSRFToken() ?>">
                         
                         <div class="mb-4">
@@ -86,11 +90,17 @@ unset($_SESSION['quiz_error']);
                             <label class="block text-gray-700 text-sm font-bold mb-2">
                                 <i class="fas fa-align-left mr-2"></i>Description
                             </label>
+<<<<<<< HEAD
+                            <textarea name="description" rows="4" 
+=======
                             <textarea name="description" rows="3" 
+>>>>>>> upstream/main
                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                       placeholder="Décrivez votre quiz..."></textarea>
                         </div>
 
+<<<<<<< HEAD
+=======
                         <hr class="my-6">
 
                         <!-- Section Questions -->
@@ -120,17 +130,24 @@ unset($_SESSION['quiz_error']);
                             </div>
                         </div>
 
+>>>>>>> upstream/main
                         <div class="flex gap-4">
                             <a href="quiz.php" 
                                class="flex-1 text-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
                                 Annuler
                             </a>
+<<<<<<< HEAD
+                            <button type="submit" 
+=======
                             <button type="submit" id="submitBtn"
+>>>>>>> upstream/main
                                     class="flex-1 px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-semibold">
                                 <i class="fas fa-plus-circle mr-2"></i>Créer le Quiz
                             </button>
                         </div>
                     </form>
+<<<<<<< HEAD
+=======
 
                     <script>
                         let questionCount = 0;
@@ -248,6 +265,7 @@ unset($_SESSION['quiz_error']);
                             addQuestion();
                         });
                     </script>
+>>>>>>> upstream/main
                 <?php endif; ?>
             </div>
         </div>
