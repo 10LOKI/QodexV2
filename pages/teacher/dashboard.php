@@ -129,7 +129,7 @@ $initials = strtoupper(substr($userName, 0, 1) . substr(explode(' ', $userName)[
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Quiz Récents</h2>
             
             <?php if (empty($quizzes)): ?>
-                <div class="bg-white rounded-xl shadow-md p-8 text-center">
+                <a class="bg-white rounded-xl shadow-md p-8 text-center">
                     <i class="fas fa-clipboard-list text-6xl text-gray-300 mb-4"></i>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Aucun quiz pour le moment</h3>
                     <p class="text-gray-600 mb-6">Créez votre premier quiz pour commencer</p>

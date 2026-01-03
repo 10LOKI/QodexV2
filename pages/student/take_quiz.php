@@ -170,9 +170,28 @@ document.getElementById('quizForm').onsubmit = async (e) => {
     const formData = new FormData(e.target);
     const response = await fetch('../../actions/Etudiant/submit_quiz.php', {
         method: 'POST',
-        body: formData
+        body: formData,
+        credentials: 'same-origin'
     });
-    
+
+    // If server returned non-OK, handle errors (401 -> redirect to login)
+    if (!response.ok) {
+        let data = null;
+        try { data = await response.json(); } catch (err) { /* ignore non-JSON */ }
+
+        if (response.status === 401) {
+            alert('Session expirée — veuillez vous reconnecter.');
+            window.location.href = '../../pages/auth/login.php';
+            return;
+        }
+
+        const msg = (data && data.message) ? data.message : ('Erreur serveur: ' + response.status);
+        alert("Erreur: " + msg);
+        btn.disabled = false;
+        btn.textContent = "Soumettre l'examen";
+        return;
+    }
+
     const result = await response.json();
     if (result.status === 'success') {
         window.location.href = result.redirect + '?score=' + result.score + '&total=' + result.total;

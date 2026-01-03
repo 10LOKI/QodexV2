@@ -1,8 +1,6 @@
-<?php
-require_once 'config/database.php';
-if (isset($pdo)) {
-    echo "✅ Connexion réussie ! L'objet PDO est prêt.";
-} else {
-    echo "❌ L'objet PDO n'est pas défini.";
-}
-?>
+1. Classe Category (Lecture seule)L'étudiant ne peut pas créer ou modifier de catégories. La classe se concentre sur la récupération des données pour l'exploration.getAll() : Récupère toutes les catégories pour l'affichage sur le dashboard.getById($id) : Récupère les détails d'une catégorie spécifique.getActiveQuizzes($categoryId) : Récupère la liste des quiz liés à cette catégorie où is_active = 1.
+
+
+2. Classe QuestionCette classe gère l'affichage des questions sans jamais exposer la réponse correcte dans le HTML envoyé à l'étudiant.getByQuiz($quizId) : Récupère toutes les questions d'un quiz spécifique (intitulé + les 4 options).countByQuiz($quizId) : Retourne le nombre total de questions pour un quiz (utile pour le calcul du score final).checkAnswer($questionId, $userOption) : Méthode serveur qui compare l'option choisie par l'étudiant avec correct_option en base de données et retourne un booléen.
+
+3. Classe Result (Gestion des performances)C'est ici que l'on traite la persistance des scores et l'historique sécurisé.save($quizId, $studentId, $score, $totalQuestions) : Enregistre le résultat final après la soumission du formulaire.getByStudent($studentId) : Récupère l'historique complet d'un étudiant spécifique (utilisé dans ta page history.php).getLatestByStudent($studentId, $limit) : Récupère les $N$ derniers résultats pour l'affichage rapide sur le dashboard.calculateMoyenne($studentId) : Logique métier pour calculer la moyenne générale de l'étudiant sur 20.getSuccessRate($studentId) : Calcule le pourcentage de quiz réussis (score >= 50%).
