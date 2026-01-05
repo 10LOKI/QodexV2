@@ -1,8 +1,6 @@
 <?php
-// pages/student/profile.php
 require_once '../../config/database.php';
 
-// Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../auth/login.php');
     exit();

@@ -1,22 +1,17 @@
 <?php
-// pages/Etudiant/result.php
 session_start();
 
-// Security check: Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../login.php");
     exit();
 }
 
-// Get parameters from URL (sent by the JS redirect)
 $score = filter_input(INPUT_GET, 'score', FILTER_VALIDATE_INT) ?? 0;
 $total = filter_input(INPUT_GET, 'total', FILTER_VALIDATE_INT) ?? 0;
 
-// Calculate Percentage
 $percentage = ($total > 0) ? round(($score / $total) * 100) : 0;
 
-// Determine Status
-$passed = $percentage >= 50; // You can change this threshold
+$passed = $percentage >= 50;
 $statusTitle = $passed ? "Félicitations !" : "Ne lâchez rien !";
 $statusMessage = $passed 
     ? "Vous avez réussi cet examen avec brio." 

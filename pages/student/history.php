@@ -1,10 +1,7 @@
 <?php
-// pages/student/history.php
 require_once '../../config/database.php';
 
-// Sessions are initialized in config/database.php when needed
 
-// Security check
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../auth/login.php");
     exit();
@@ -12,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// Fetch all results for this student
 $sql = "SELECT r.*, q.titre as quiz_title 
         FROM results r 
         JOIN quiz q ON r.quiz_id = q.id 

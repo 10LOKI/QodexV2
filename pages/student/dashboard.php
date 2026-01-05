@@ -1,7 +1,6 @@
 <?php
 require_once('../../config/database.php');
 
-// On définit la page active pour la navbar
 $currentPage = 'dashboard';
 include_once('../partials/header.php'); 
 
@@ -16,12 +15,10 @@ try
     $stmt->execute([$etudiant_id]);
     $total_completes = $stmt->fetchColumn();
 
-    // 2. Stats : Moyenne
     $stmt = $pdo->prepare("SELECT AVG((score / total_questions) * 20) FROM results WHERE etudiant_id = ?");
     $stmt->execute([$etudiant_id]);
     $moyenne = round($stmt->fetchColumn(), 1) ?: 0;
 
-    // 3. Stats : Taux de réussite
     $stmt = $pdo->prepare("
         SELECT (COUNT(CASE WHEN (score/total_questions) >= 0.5 THEN 1 END) * 100 / NULLIF(COUNT(*), 0)) 
         FROM results WHERE etudiant_id = ?
@@ -29,7 +26,6 @@ try
     $stmt->execute([$etudiant_id]);
     $taux_reussite = round($stmt->fetchColumn(), 0) ?: 0;
 
-    // 4. Stats : Classement
     $stmt = $pdo->prepare("
         SELECT classement FROM (
             SELECT etudiant_id, RANK() OVER (ORDER BY SUM(score) DESC) as classement
@@ -156,7 +152,6 @@ catch (PDOException $e)
 
     <script>
         function showStudentSection(section, catName) {
-            // Logique de redirection vers quizzes.php avec la catégorie
             window.location.href = 'quizzes.php?category=' + encodeURIComponent(catName);
         }
     </script>
